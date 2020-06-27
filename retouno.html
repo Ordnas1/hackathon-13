@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <main>
+    <main class="reto1">
         <h1>Reto 1</h1>
         <section class="pregunta">
             <h2>¿Por que evitar los callbacks en llamadas asincronas?</h2>
@@ -54,14 +54,26 @@
             <p>El callback hell es código asíncrono de JavaScript que hace uso inadecuado de los callbacks, lo cual resulta en un código con una forma de pirámide "particular"</p>
             <h3>Ejemplo Callback Hell</h3>
             <div class="code-example">
-    let form = document.getElementById("form")
+    let btn = document.getElementById("btn")
 
-    form.addEventListener("submit", e => {
-        let name = document.getElementById("name").value
-        if (name === undefined) {
-            
+    btn.addEventListener("click", e => {
+        
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET',urlData,true)
+
+        xhr.onload = function() {
+            if (this.responseText === undefined) {
+                xhr.open('GET',urlDataFallback,true)
+                if (this.responseText === undefined) {
+                    xhr.open('GET',urlDataFallback2,true)
+                }
+            } else {
+                userData = this.responseText;
+            }
         }
-    })
+
+        xhr.send();
+    }
             </div>
         </section>
     </main>
