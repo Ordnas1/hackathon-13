@@ -138,6 +138,7 @@ const modalController = (() =>
 
     addDog.addEventListener("click", () => 
     {
+        form.reset()
         openModal()
         form.dataset.mode = "add"
     })
