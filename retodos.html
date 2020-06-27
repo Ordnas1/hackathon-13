@@ -13,12 +13,47 @@
     </header>
     <main class="dog-main">
         <div class="dog-card">
+            <span class="dog-card__edit">&#10000</span>
+            <span class="dog-card__close">&#10005</span>
             <img src="https://via.placeholder.com/140" alt="" class="dog-card__img">
             <h2 class="dog-card__name">Nombre</h2>
             <h3 class="contact">Telefono | Correo</h3>
             <h4 class="dog-card__country">Pais</h4>
             <p class="dog-card__about">About me about me about me about me about me about me about me about me about me about me about me</p>
         </div>
+
+       
     </main>
+    <div class="modal">
+            
+        <div class="modal-box">
+            <h2>Agregar Mascota</h2>
+            <form action="" class="modal-form">
+                <div class="modal-form__row">
+                    <input type="text" name="fname" id="fname" placeholder="Nombre">
+                    <input type="text" name="lname" id="lname" placeholder="Apellido">
+                </div>
+                <div class="modal-form__row">
+                    <input type="text" name="race" id="race" placeholder="Raza">
+                    <input type="tel" name="tel" id="tel" placeholder="Telefono">
+                </div>
+                <div class="modal-form__row">
+                    <select name="pais" id="pet-select">
+                        <option value="">Pais</option>
+                        <option value="peru">Perú</option>
+                        <option value="chile">Chile</option>
+                        <option value="mexico">México</option>
+                        <option value="brasil">Brasil</option>
+                    </select>
+                    <input type="url" name="photo" id="photo" placeholder="Url de Fotografía">
+                </div>
+                <textarea name="about" id="about" cols="30" rows="10" placeholder="Sobre el/ella"></textarea>
+                <div class="modal-form__row modal-form__row--btn">
+                    <input type="submit" value="Aceptar">
+                    <button id="cancel">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
