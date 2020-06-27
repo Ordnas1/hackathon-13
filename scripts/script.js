@@ -44,12 +44,23 @@ const dogStorage = (() =>
 const displayController = (() =>
 {
     const container = document.querySelector(".dog-main")
+    container.addEventListener("click", e => 
+    {
+        console.log(e)
+        if (e.target.matches(".dog-card__close")) {
+            const dogPos = Number(e.target.parentElement.dataset.pos)
+            console.log(e.target.parentElement.dataset.pos)
+            dogStorage.deleteDog(dogPos)
+            displayController.render()
+        }
+        
+    })
 
     const deleteChild = () => 
     {
         while (container.firstChild) container.removeChild(container.lastChild)
     }
-    const addDogCard = (dog) => {
+    const addDogCard = (dog,pos) => {
         let card = document.createElement("div")
         card.classList.add("dog-card")
         let edit = document.createElement("span")
@@ -67,6 +78,8 @@ const displayController = (() =>
         let about = document.createElement("p")
         about.classList.add("dog-card__about")
 
+        edit.textContent = "\u2710"
+        close.textContent = "\u2715"
         img.scr = dog.photoUrl
         name.textContent = dog.getFullName()
         contact.textContent = `${dog.tel | dog.race}`
@@ -81,6 +94,7 @@ const displayController = (() =>
         card.appendChild(contact)
         card.appendChild(country)
         card.appendChild(about)
+        card.dataset.pos = pos
 
         container.appendChild(card)
     }
@@ -90,9 +104,9 @@ const displayController = (() =>
         deleteChild()
         const currentDog = dogStorage.getDogArray()
 
-        currentDog.forEach(dog => 
+        currentDog.forEach((dog,index) => 
             {
-                addDogCard(dog)
+                addDogCard(dog,index)
             })
 
     }
