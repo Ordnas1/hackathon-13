@@ -24,6 +24,14 @@ const formController = (() => {
             modalController.closeModal()
 
             displayController.render()
+        } else {
+            e.preventDefault()
+            const newDog = dogFactory(e.target[0].value, e.target[1].value,e.target[2].value,
+                e.target[3].value,e.target[4].value,e.target[5].value,e.target[6].value)
+            dogStorage.editDog(Number(e.target.dataset.pos), newDog)
+            modalController.closeModal()
+
+            displayController.render()
         }
         
     })
@@ -118,7 +126,8 @@ const displayController = (() =>
 /* modal script */
 
 const modalController = (() =>
-{
+{   
+    const container = document.querySelector(".dog-main")
     const form = document.querySelector("form")
     const addDog = document.getElementById("add_dog")
     const modal = document.getElementById("modal")
@@ -133,6 +142,13 @@ const modalController = (() =>
         form.dataset.mode = "add"
     })
     close.addEventListener("click", closeModal)
+
+    container.addEventListener("click",e =>
+    {
+        openModal()
+        form.dataset.mode = "edit"
+        form.dataset.pos = e.target.parentElement.dataset.pos
+    }) 
 
     return {closeModal}
 })()
