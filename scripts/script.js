@@ -90,7 +90,7 @@ const displayController = (() =>
         close.textContent = "\u2715"
         img.scr = dog.photoUrl
         name.textContent = dog.getFullName()
-        contact.textContent = `${dog.tel | dog.race}`
+        contact.textContent = `${dog.tel} | ${dog.race}`
         country.textContent = dog.country
         about.textContent = dog.about
 
@@ -146,9 +146,22 @@ const modalController = (() =>
 
     container.addEventListener("click",e =>
     {
-        openModal()
-        form.dataset.mode = "edit"
-        form.dataset.pos = e.target.parentElement.dataset.pos
+        if (e.target.matches(".dog-card__edit"))
+        {
+            const pos = e.target.parentElement.dataset.pos
+            const currentDog = dogStorage.getDogArray()[pos] 
+            openModal()
+            form.dataset.mode = "edit"
+            form.dataset.pos = pos
+            form[0].value = currentDog.fname
+            form[1].value = currentDog.lname
+            form[2].value = currentDog.race
+            form[3].value = currentDog.tel
+            form[4].value = currentDog.country
+            form[5].value = currentDog.photoUrl
+            form[6].value = currentDog.about
+        }
+        
     }) 
 
     return {closeModal}
