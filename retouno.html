@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <h1>Reto 1</h1>
+        <section class="pregunta">
+            <h2>¿Por que evitar los callbacks en llamadas asincronas?</h2>
+            <p>Un callback no es nada más que una función que pasa a otra función como argumento. Esta función es luego invocada dentro de la función exterior cuando se termina una rutina o acción. Es por esto último que los callbacks se usan principalmente en llamadas asíncronas.</p>
+            <p>Sin embargo usar callbacks sin un tener un buen diseño nos puede traer problemas de código dificil de leer y mantener, lo que se conoce como callback hell</p>
+            <h3>Ejemplo de Callback</h3>
+            <p>Por ejemplo, podemos usar un callback para obtener data via la API <code>XMLHttpRequest</code></p>
+            <div class="code-example">
+    let urlData = "https://jsonplaceholder.typicode.com/todos"
+    let userData = null
+    btn.addEventListener("click",loadUserData)
+
+    function loadUserData() {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET',urlData,true)
+
+        xhr.onload = function() {
+            userData = JSON.parse(this.responseText)
+        }
+
+        xhr.send();
+    }
+            </div>
+        </section>
+        <section class="pregunta">
+            <h2>¿Que es una promesa?</h2>
+            <p>Una promesa es un objeto JavaScript que representa el eventual estado de completo (o fallo) de una operación asíncrona. Nos permite trabajar con código sin que tengamos el valor final de la operación: En vez de recibir un valor, recibimos una <em>promesa</em> de que vamos a recibirlo en el futuro.</p>
+            <p>Las promesas nos permiten encadenar operaciones asíncronas mediante múltiples métodos <code>.then()</code> y manejar errores con el método <code>.catch()</code>, a diferencia de los callbacks</p>
+            <h3>Ejemplo Promise</h3>
+            <div class="code-example">
+    let promise = new Promise (resolve, reject) => 
+    {
+        setTimeout(() => resolve("done"), 1000);
+    }
+
+        promise.then(
+            result => console.log(result),
+            error => console.log(error)
+        )
+            </div>
+        </section>
+        <section class="pregunta">
+            <h2>¿Qué es un callback hell?</h2>
+            <p>El callback hell es código asíncrono de JavaScript que hace uso inadecuado de los callbacks, lo cual resulta en un código con una forma de pirámide "particular"</p>
+            <h3>Ejemplo Callback Hell</h3>
+            <div class="code-example">
+    let form = document.getElementById("form")
+
+    form.addEventListener("submit", e => {
+        let name = document.getElementById("name").value
+        if (name === undefined) {
+            
+        }
+    })
+            </div>
+        </section>
+    </main>
+</body>
+</html>
